@@ -1,5 +1,5 @@
 # todo-app
 A todo app:
-	Front-End: Angular
-	Back-End: Java
-  	Database: MySql
+	<br> Front-End: Angular
+	<br> Back-End: Java
+  	<br> Database: MySql
