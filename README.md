@@ -22,4 +22,4 @@ A todo app:
 
 * Used Postman to verify all the API's calls.
 ## Flow
-When we hit a url in the postman, it goes to the controller class to map the url using RequestMapping Annotations and see the type of request and then calls the service implementation class which uses JPA to do the CURD operations and provide us the details.
+When we hit a url in the postman, it goes to the controller class to map the url using RequestMapping and see the type of request and then calls the service implementation class which uses JPA to do the CRUD operations and provide us the details.
