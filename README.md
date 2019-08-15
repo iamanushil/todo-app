@@ -6,6 +6,7 @@ A todo app:
 <br>
 
 #Backend 
+* To run: mvn spring-boot:run
 * Using Spring and MySql 
 * DB name: todo
 * table name: todo
