@@ -1,5 +1,6 @@
-# todo-app
+# ToDo Application
 A todo app:
-	<br> Front-End: Angular
-	<br> Back-End: Java
-  	<br> Database: MySql
+	* Front-End: Angular
+	* Back-End: Java
+  	* Database: MySql
+<br>
