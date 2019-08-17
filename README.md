@@ -19,14 +19,20 @@ A todo app:
 - description: string (sbout subtask)
 - todoId: long (id of todo to which it belongs)
 
-* url: localhost:8080/todos
+* url: localhost:8080/api/todos
   * /, POST: create a todo Item
+  		
   * /, GET: find all todo
   * /{id}, DELETE: delete a todo given a id in url 
   * /{id}, PUT: update a todo given a id in url
-  * 
-  
+  * /{id}, GET: get subtask for that todo
+  * /subtask, POST: create a subtask for a todo
+
 
 * Used Postman to verify all the API's calls.
 ## Backend Flow
 When we hit a url in the postman, it goes to the controller class to map the url using RequestMapping and see the type of request and then calls the service implementation class which uses JPA to do the CRUD operations and provide us the details.
+
+# Frontend
+*  Command to create new angular project (boilerplate) with project name frontend:
+	> ng new frontend 
