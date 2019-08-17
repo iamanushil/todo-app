@@ -13,7 +13,7 @@ public class TodoItem {
 	
 	@Id
 	@Column(name="todo_id")
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	
 	private String description;
