@@ -8,15 +8,17 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="todos")
-public class TodoItem {
+@Table(name="subtasks")
+public class Subtask {
 	
 	@Id
-	@Column(name="todo_id")
+	@Column(name="subtask_id")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	
 	private String description;
+	
+	private long todoId;
 
 	public long getId() {
 		return id;
@@ -33,5 +35,14 @@ public class TodoItem {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	public long getTodoId() {
+		return todoId;
+	}
+
+	public void setTodoId(long todoId) {
+		this.todoId = todoId;
+	}
+	
 	
 }
