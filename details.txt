@@ -1,0 +1,30 @@
+
+core.js:6014 ERROR Error: Uncaught (in promise): NullInjectorError: StaticInjectorError(AppModule)[TodoService -> HttpClient]: 
+  StaticInjectorError(Platform: core)[TodoService -> HttpClient]: 
+    NullInjectorError: No provider for HttpClient!
+NullInjectorError: StaticInjectorError(AppModule)[TodoService -> HttpClient]: 
+  StaticInjectorError(Platform: core)[TodoService -> HttpClient]: 
+    NullInjectorError: No provider for HttpClient!
+    at NullInjector.get (core.js:855)
+    at resolveToken (core.js:17513)
+    at tryResolveToken (core.js:17439)
+    at StaticInjector.get (core.js:17265)
+    at resolveToken (core.js:17513)
+    at tryResolveToken (core.js:17439)
+    at StaticInjector.get (core.js:17265)
+    at resolveNgModuleDep (core.js:30392)
+    at NgModuleRef_.get (core.js:31577)
+    at resolveDep (core.js:32142)
+    at resolvePromise (zone-evergreen.js:797)
+    at resolvePromise (zone-evergreen.js:754)
+    at zone-evergreen.js:858
+    at ZoneDelegate.invokeTask (zone-evergreen.js:391)
+    at Object.onInvokeTask (core.js:39679)
+    at ZoneDelegate.invokeTask (zone-evergreen.js:390)
+    at Zone.runTask (zone-evergreen.js:168)
+    at drainMicroTaskQueue (zone-evergreen.js:559)
+
+>>>>>  import { HttpClientModule } from "@angular/common/http"  'in app.modules.ts'
+
+-------------------------------------------------------------------------------------------------------------------------------------
+

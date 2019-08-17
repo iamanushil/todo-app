@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="center">
-    <form [formGroup]="todoForm">
+    <form [formGroup]="todoForm" (ngSubmit)="onSubmit(todoForm.value)">
       <div
         class="form-row align-items-center"
         style="margin-top: 30px; margin-left: 310px"
