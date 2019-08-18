@@ -1,32 +1,32 @@
 # Steps to run the application:
-	* MySql Setup:
-		* Login in my sql using username and password.
-		* Create a database by typing:
-			> create database todo;
+* MySql Setup:
+	* Login in my sql using username and password.
+	* Create a database by typing:
+		> create database todo;
 
-	* To run Backened Code:
-		* Change the username and password in application.properties with your mysql username & password. 
-		* Go inside the java code folder **todo-app/todo** and type:
-			> mvn spring-boot:run
-		* This will run the backend server and create a tables called 'todos' and 'subtasks' for us.
-		
-	* In MySQL IDE run below code to insert values in the tables:
-		> use todo;
-		
-		* To insert into todos table:
-			> insert into todos values(1, 'Java');
-			> insert into todos values(2, 'Angular');
-		
-		* To insert into subtasks table:
-			> insert into subtasks values(1, 'Inheritance', 1);
-			> insert into subtasks values(2, 'Class', 1);
-			> insert into subtasks values(3, 'Components', 2);
-		
-	* To run frontend code:
-		* Go inside **todo-app/frontend** and type:
-			> npm run start
-			
-	* Go to http://localhost:4200 and start using the application.
+* To run Backened Code:
+	* Change the username and password in application.properties with your mysql username & password. 
+	* Go inside the java code folder **todo-app/todo** and type:
+		> mvn spring-boot:run
+	* This will run the backend server and create a tables called 'todos' and 'subtasks' for us.
+
+* In MySQL IDE run below code to insert values in the tables:
+	> use todo;
+
+	* To insert into todos table:
+		> insert into todos values(1, 'Java');
+		> insert into todos values(2, 'Angular');
+
+	* To insert into subtasks table:
+		> insert into subtasks values(1, 'Inheritance', 1);
+		> insert into subtasks values(2, 'Class', 1);
+		> insert into subtasks values(3, 'Components', 2);
+
+* To run frontend code:
+	* Go inside **todo-app/frontend** and type:
+		> npm run start
+
+* Go to http://localhost:4200 and start using the application.
 
 # ToDo Application
 A todo app:
