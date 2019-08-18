@@ -1,0 +1,38 @@
+<div class="container-fluid">
+  {{ todo.description }}
+  <div>
+    <form
+      [formGroup]="subtaskForm"
+      novalidate
+      (ngSubmit)="onSubmit(subtaskForm.value, todo)"
+    >
+      <div class="row">
+        <div class="col-10">
+          <input
+            required
+            class="form-control"
+            type="text"
+            formControlName="description"
+          />
+        </div>
+        <div>
+          <button type="submit" class="btb btn-primary">
+            Add Subtask
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div>
+    <table>
+      <thead></thead>
+      <tbody>
+        <tr *ngFor="let subtask of subtasks">
+          {{
+            subtask.description
+          }}
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

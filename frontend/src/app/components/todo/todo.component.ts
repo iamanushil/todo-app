@@ -1,7 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { Todo } from "../../models/todo";
 import { TodoService } from "../../services/todoService/todo.service";
+import { Subtask } from "src/app/models/subtask";
 
 @Component({
   selector: "app-todo",
@@ -13,6 +14,9 @@ export class TodoComponent implements OnInit {
   todoForm: FormGroup;
   todos: Todo[] = [];
   selectedTodo: Todo;
+  @ViewChild("desc", { static: true }) desc: ElementRef;
+
+  subtasks: Subtask[] = [];
 
   private createForm() {
     this.todoForm = this.formBuilder.group({
@@ -71,10 +75,18 @@ export class TodoComponent implements OnInit {
     this.selectedTodo = todo;
     // To populate the input box for edit
     this.todoForm.controls["item"].setValue(todo.description);
+    // to focus on input
+    this.desc.nativeElement.focus();
   }
 
   // check if two todos are same or not
   isSameTodo(todoList: Todo, selectedTodo: Todo) {
     return todoList.id == selectedTodo.id;
+  }
+
+  showSubtask(todo: Todo) {
+    this.todoService.getSubtaskForATodo(todo).subscribe(res => {
+      this.subtasks = res;
+    });
   }
 }

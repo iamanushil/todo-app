@@ -6,7 +6,14 @@
         style="margin-top: 30px; margin-left: 310px"
       >
         <div class="col-sm-6 my-1">
-          <input type="text" class="form-control" formControlName="item" />
+          <input
+            required
+            minlength="3"
+            type="text"
+            class="form-control"
+            formControlName="item"
+            #desc
+          />
         </div>
         <div class="col-auto my-1">
           <button
@@ -34,6 +41,14 @@
             <button class="btn btn-danger" (click)="deleteTodo(todo)">
               Delete
             </button>
+          </td>
+          <td>
+            <button class="btn btn-secondary" (click)="showSubtask(todo)">
+              Subtask
+            </button>
+          </td>
+          <td>
+            <app-subtask [subtasks]="subtasks" [todo]="todo"></app-subtask>
           </td>
         </tr>
       </tbody>

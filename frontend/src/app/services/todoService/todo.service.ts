@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { Todo } from "src/app/models/todo";
 import { HttpClient } from "@angular/common/http";
+import { Subtask } from "src/app/models/subtask";
 
 @Injectable({
   providedIn: "root"
@@ -25,5 +26,9 @@ export class TodoService {
 
   updateTodo(todo: Todo): Observable<Todo> {
     return this.http.put<Todo>(this.baseUrl + "/" + todo.id, todo);
+  }
+
+  getSubtaskForATodo(todo: Todo): Observable<Subtask[]> {
+    return this.http.get<Subtask[]>(this.baseUrl + "/" + todo.id);
   }
 }
