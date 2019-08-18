@@ -5,6 +5,7 @@
 			> create database todo;
 
 	* To run Backened Code:
+		* Change the username and password in application.properties with your mysql login password. 
 		* Go inside the java code folder **todo-app/todo** and type:
 			> mvn spring-boot:run
 		* This will run the backend server and create a tables called todos and subtasks for us.
