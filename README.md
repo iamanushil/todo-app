@@ -15,11 +15,14 @@
 
 	* To insert into todos table:
 		> insert into todos values(1, 'Java');
+		
 		> insert into todos values(2, 'Angular');
 
 	* To insert into subtasks table:
 		> insert into subtasks values(1, 'Inheritance', 1);
+		
 		> insert into subtasks values(2, 'Class', 1);
+		
 		> insert into subtasks values(3, 'Components', 2);
 
 * To run frontend code:
