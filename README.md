@@ -94,3 +94,4 @@ When we hit a url in the postman, it goes to the controller class to map the url
 	* In package.json add this:
 		> "start": "ng serve --proxy-config proxy.config.json"
 * To use bootstrap and jquery add that in angular.json, remember don't add **../**
+* There are two components Todo and Subtask.
