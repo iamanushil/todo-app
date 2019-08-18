@@ -1,16 +1,16 @@
 # Steps to run the application:
-* MySql Setup:
+1. MySql Setup:
 	* Login in my sql using username and password.
 	* Create a database by typing:
 		> create database todo;
 
-* To run Backened Code:
+2. To run Backened Code:
 	* Change the username and password in application.properties with your mysql username & password. 
 	* Go inside the java code folder **todo-app/todo** and type:
 		> mvn spring-boot:run
 	* This will run the backend server and create a tables called 'todos' and 'subtasks' for us.
 
-* In MySQL IDE run below code to insert values in the tables:
+3. In MySQL IDE run below code to insert values in the tables:
 	> use todo;
 
 	* To insert into todos table:
@@ -25,11 +25,11 @@
 		
 		> insert into subtasks values(3, 'Components', 2);
 
-* To run frontend code:
+4. To run frontend code:
 	* Go inside **todo-app/frontend** and type:
 		> npm run start
 
-* Go to http://localhost:4200 and start using the application.
+5. Go to http://localhost:4200 and start using the application.
 
 # ToDo Application
 A todo app:
