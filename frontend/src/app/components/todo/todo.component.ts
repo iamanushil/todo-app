@@ -16,6 +16,8 @@ export class TodoComponent implements OnInit {
   selectedTodo: Todo;
   @ViewChild("desc", { static: true }) desc: ElementRef;
 
+  undoButtonDisbaled: boolean;
+
   subtasks: Subtask[] = [];
 
   private createForm() {
@@ -75,6 +77,7 @@ export class TodoComponent implements OnInit {
       // removing from the todos array
       this.todos = this.todos.filter(todo => todo.id !== todoToRemove.id);
     });
+    this.undoButtonDisbaled = true;
   }
 
   selectATodo(todo: Todo) {
@@ -98,7 +101,12 @@ export class TodoComponent implements OnInit {
 
   recoverLastDeletedTodo() {
     this.todoService.getLastDeletedTodo().subscribe(res => {
-      this.todos.push(res);
+      if (res == null) {
+        alert("Already there");
+      } else {
+        this.todos.push(res);
+      }
     });
+    this.undoButtonDisbaled = false;
   }
 }

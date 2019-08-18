@@ -55,7 +55,13 @@ public class TodoItemController {
 	@RequestMapping(value = "/recover", method = RequestMethod.GET)
 	public @ResponseBody TodoItem recoverLatestDeletedTodo() {
 		TodoItem recoveredTodo = todoItemService.recoverLatestDeletedTodo();
-
+		
+		List<TodoItem> todos = todoItemService.findAllTodo();
+		for (TodoItem todo: todos) {
+			if(todo.getId() == recoveredTodo.getId()) {
+				return null;
+			}
+		}
 		return todoItemService.saveTodo(recoveredTodo);
 	}
 
