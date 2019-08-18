@@ -38,27 +38,33 @@ export class TodoComponent implements OnInit {
 
   // For Adding and Updating a Todo
   onSubmit(val) {
-    // we got an object with the input value
-    if (!this.selectedTodo) {
-      const newTodo: Todo = {
-        id: null,
-        description: val.item
-      };
-      this.todoService.saveTodo(newTodo).subscribe(res => this.todos.push(res));
+    if (val.item == null || val.item == "") {
+      alert("Please enter some description");
     } else {
-      const updatedTodo: Todo = {
-        // since we are updating a todo, so we need to provide the id
-        id: this.selectedTodo.id,
-        description: val.item
-      };
-      this.todoService
-        .updateTodo(updatedTodo)
-        .subscribe(
-          res =>
-            (this.todos.filter(todo =>
-              this.isSameTodo(res, todo)
-            )[0].description = res.description)
-        );
+      // we got an object with the input value
+      if (!this.selectedTodo) {
+        const newTodo: Todo = {
+          id: null,
+          description: val.item
+        };
+        this.todoService
+          .saveTodo(newTodo)
+          .subscribe(res => this.todos.push(res));
+      } else {
+        const updatedTodo: Todo = {
+          // since we are updating a todo, so we need to provide the id
+          id: this.selectedTodo.id,
+          description: val.item
+        };
+        this.todoService
+          .updateTodo(updatedTodo)
+          .subscribe(
+            res =>
+              (this.todos.filter(todo =>
+                this.isSameTodo(res, todo)
+              )[0].description = res.description)
+          );
+      }
     }
     this.selectedTodo = null;
     this.todoForm.reset();

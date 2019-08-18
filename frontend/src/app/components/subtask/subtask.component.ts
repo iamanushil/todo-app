@@ -33,20 +33,19 @@ export class SubtaskComponent implements OnInit {
   ngOnInit() {}
 
   onSubmit(val, todo) {
-    const subtask: Subtask = {
-      id: null,
-      description: val.description,
-      todoId: todo.id
-    };
-    this.subtaskService
-      .saveSubtaskToATodo(subtask)
-      .subscribe(res => console.log(res));
-    //     res =>
-    //       this.subtasks.filter(subtask =>
-    //         this.checkTodoAndSubtaskAreSame(res, todo)
-    //       )[0]
-    //   );
-    // console.log(this.subtasks);
+    if (val.item == null || val.item == "") {
+      alert("Please enter some description");
+    } else {
+      const subtask: Subtask = {
+        id: null,
+        description: val.description,
+        todoId: todo.id
+      };
+      this.subtaskService
+        .saveSubtaskToATodo(subtask)
+        .subscribe(res => console.log(res));
+    }
+    this.subtaskForm.reset();
   }
 
   // check if two todos are same or not

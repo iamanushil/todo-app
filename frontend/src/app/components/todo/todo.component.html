@@ -7,8 +7,8 @@
       >
         <div class="col-sm-6 my-1">
           <input
-            required
-            minlength="3"
+            ng-required="true"
+            ng-minlength="3"
             type="text"
             class="form-control"
             formControlName="item"
@@ -54,4 +54,14 @@
       </tbody>
     </table>
   </div>
+  <table class="table">
+    <thead>
+      Subtask
+    </thead>
+    <tbody>
+      <tr *ngFor="let subtask of subtasks">
+        <td>{{ subtask.description }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
