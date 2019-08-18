@@ -5,22 +5,22 @@
 			> create database todo;
 
 	* To run Backened Code:
-		* Change the username and password in application.properties with your mysql login password. 
+		* Change the username and password in application.properties with your mysql username & password. 
 		* Go inside the java code folder **todo-app/todo** and type:
 			> mvn spring-boot:run
-		* This will run the backend server and create a tables called todos and subtasks for us.
+		* This will run the backend server and create a tables called 'todos' and 'subtasks' for us.
 		
-	* In MySQL IDE run below code:
+	* In MySQL IDE run below code to insert values in the tables:
 		> use todo;
 		
-		* Insert into todos table:
-		> insert into todos values(1, 'Java');
-		> insert into todos values(2, 'Angular');
+		* To insert into todos table:
+			> insert into todos values(1, 'Java');
+			> insert into todos values(2, 'Angular');
 		
-		* Insert into subtasks table:
-		> insert into subtasks values(1, 'Inheritance', 1);
-		> insert into subtasks values(2, 'Class', 1);
-		> insert into subtasks values(3, 'Components', 2);
+		* To insert into subtasks table:
+			> insert into subtasks values(1, 'Inheritance', 1);
+			> insert into subtasks values(2, 'Class', 1);
+			> insert into subtasks values(3, 'Components', 2);
 		
 	* To run frontend code:
 		* Go inside **todo-app/frontend** and type:
