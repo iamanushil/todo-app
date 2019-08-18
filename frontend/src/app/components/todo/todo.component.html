@@ -7,8 +7,6 @@
       >
         <div class="col-sm-6 my-1">
           <input
-            ng-required="true"
-            ng-minlength="3"
             type="text"
             class="form-control"
             formControlName="item"
@@ -54,14 +52,17 @@
       </tbody>
     </table>
   </div>
-  <table class="table">
-    <thead>
-      Subtask
-    </thead>
-    <tbody>
-      <tr *ngFor="let subtask of subtasks">
-        <td>{{ subtask.description }}</td>
-      </tr>
-    </tbody>
-  </table>
+  <br /><br />
+  <div class="center">
+    <table class="table">
+      <thead align="center">
+        <h3 style="color: peru">Subtask List</h3>
+      </thead>
+      <tbody>
+        <tr *ngFor="let subtask of subtasks">
+          <td>{{ subtask.description }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

@@ -1,5 +1,4 @@
 <div class="container-fluid">
-  {{ todo.description }}
   <div>
     <form
       [formGroup]="subtaskForm"
@@ -7,9 +6,8 @@
       (ngSubmit)="onSubmit(subtaskForm.value, todo)"
     >
       <div class="row">
-        <div class="col-10">
+        <div class="col-6">
           <input
-            required
             class="form-control"
             type="text"
             formControlName="description"
@@ -24,7 +22,3 @@
     </form>
   </div>
 </div>
-<table>
-  <thead></thead>
-  <tbody></tbody>
-</table>

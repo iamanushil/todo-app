@@ -33,7 +33,7 @@ export class SubtaskComponent implements OnInit {
   ngOnInit() {}
 
   onSubmit(val, todo) {
-    if (val.item == null || val.item == "") {
+    if (val.description == null || val.description == "") {
       alert("Please enter some description");
     } else {
       const subtask: Subtask = {
