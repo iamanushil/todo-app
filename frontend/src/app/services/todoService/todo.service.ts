@@ -31,4 +31,8 @@ export class TodoService {
   getSubtaskForATodo(todo: Todo): Observable<Subtask[]> {
     return this.http.get<Subtask[]>(this.baseUrl + "/" + todo.id);
   }
+
+  getLastDeletedTodo(): Observable<Todo> {
+    return this.http.get<Todo>(this.baseUrl + "/recover");
+  }
 }

@@ -33,6 +33,12 @@ public class TodoItemController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody void deleteATodo(@PathVariable("id") long todoItemId) {
+
+		// for making a recovery of todo
+		TodoItem recentlyDeletedTodod = todoItemService.findTodoItemWithGivenId(todoItemId);
+		todoItemService.saveDeleteTodoInRecoveryTable(recentlyDeletedTodod);
+
+		// delete the item with id
 		todoItemService.deleteTodo(todoItemId);
 	}
 
@@ -44,6 +50,13 @@ public class TodoItemController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public @ResponseBody List<Subtask> getSubTaskForATodo(@PathVariable("id") long todoItemId) {
 		return todoItemService.findSubtaskForATask(todoItemId);
+	}
+
+	@RequestMapping(value = "/recover", method = RequestMethod.GET)
+	public @ResponseBody TodoItem recoverLatestDeletedTodo() {
+		TodoItem recoveredTodo = todoItemService.recoverLatestDeletedTodo();
+
+		return todoItemService.saveTodo(recoveredTodo);
 	}
 
 }

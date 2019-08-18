@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.todoapp.todo.entity.RecoverTodo;
 import com.todoapp.todo.entity.Subtask;
 import com.todoapp.todo.entity.TodoItem;
+import com.todoapp.todo.repository.RecoverTodoRepository;
 import com.todoapp.todo.repository.SubtaskRepository;
 import com.todoapp.todo.repository.TodoItemRepository;
 
@@ -22,9 +24,14 @@ public class TodoItemServiceImpl implements TodoItemService {
 	@Autowired
 	@Qualifier("subRepo")
 	SubtaskRepository subtaskRepository;
+
+	@Autowired
+	@Qualifier("recoverTodoRepo")
+	RecoverTodoRepository recoverTodoRepository;	
 	
 	@Override
 	public TodoItem saveTodo(TodoItem todoItem) {
+		System.out.println("saveTodo");
 		
 		return this.todoItemRepository.save(todoItem);
 	}
@@ -37,12 +44,14 @@ public class TodoItemServiceImpl implements TodoItemService {
 
 	@Override
 	public void deleteTodo(long todoItemId) {
+		System.out.println("deleteTodo");
 		
 		this.todoItemRepository.deleteById(todoItemId);
 	}
 
 	@Override
 	public TodoItem updateTodo(long todoItemId, TodoItem todoItem) {
+		System.out.println("updateTodo");
 		
 		TodoItem todoItemToUpdate = this.todoItemRepository.getOne(todoItemId);
 		todoItemToUpdate.setDescription(todoItem.getDescription());
@@ -64,5 +73,40 @@ public class TodoItemServiceImpl implements TodoItemService {
 			}
 		}
 		return subtaskForId;
+	}
+
+
+	@Override
+	public TodoItem findTodoItemWithGivenId(long todoItemId) {
+		System.out.println("findTodoItemWithGivenId");
+		
+		return this.todoItemRepository.getOne(todoItemId);
+	}
+
+	@Override
+	public void saveDeleteTodoInRecoveryTable(TodoItem todo) {
+		System.out.println("saveDeleteTodoInRecoveryTable");
+		
+		RecoverTodo deletedTodo = new RecoverTodo();
+		
+		deletedTodo.setId(1);
+		deletedTodo.setTodo_id(todo.getId());
+		deletedTodo.setDescription(todo.getDescription());
+		
+		this.recoverTodoRepository.save(deletedTodo);
+	}
+	
+
+	@Override
+	public TodoItem recoverLatestDeletedTodo() {
+		System.out.println("recoverLatestDeletedTodo");
+		
+		RecoverTodo recoveredTodo = this.recoverTodoRepository.getOne((long) 1);
+		TodoItem todo = new TodoItem();
+		
+		todo.setId(recoveredTodo.getTodo_id());
+		todo.setDescription(recoveredTodo.getDescription());
+		
+		return todo;
 	}
 }

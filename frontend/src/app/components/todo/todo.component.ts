@@ -95,4 +95,10 @@ export class TodoComponent implements OnInit {
       this.subtasks = res;
     });
   }
+
+  recoverLastDeletedTodo() {
+    this.todoService.getLastDeletedTodo().subscribe(res => {
+      this.todos.push(res);
+    });
+  }
 }
