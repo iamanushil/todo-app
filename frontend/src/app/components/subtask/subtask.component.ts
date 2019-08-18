@@ -43,7 +43,7 @@ export class SubtaskComponent implements OnInit {
       };
       this.subtaskService
         .saveSubtaskToATodo(subtask)
-        .subscribe(res => console.log(res));
+        .subscribe(res => this.subtasks.push(res));
     }
     this.subtaskForm.reset();
   }
