@@ -47,9 +47,4 @@ export class SubtaskComponent implements OnInit {
     }
     this.subtaskForm.reset();
   }
-
-  // check if two todos are same or not
-  checkTodoAndSubtaskAreSame(subtask: Subtask, todo: Todo) {
-    return todo.id == subtask.todoId;
-  }
 }
