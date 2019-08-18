@@ -28,7 +28,16 @@ export class TodoComponent implements OnInit {
 
   ngOnInit() {}
 
-  onSubmit(model) {
-    this.todoService.saveTodo(model).subscribe(res => this.todos.push(res));
+  onSubmit(val) {
+    // we got an object with the input value
+    const newTodo: Todo = {
+      id: null,
+      description: val.item
+    };
+
+    this.todoService.saveTodo(newTodo).subscribe(res => this.todos.push(res));
+
+    // reset the input field after adding a todo
+    this.todoForm.reset();
   }
 }
