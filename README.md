@@ -47,5 +47,16 @@ A todo app:
 When we hit a url in the postman, it goes to the controller class to map the url using RequestMapping and see the type of request and then calls the service implementation class which uses JPA to do the CRUD operations and provide us the details.
 
 # Frontend Using Angular
+* To run the angular project
+> npm run start
 *  Command to create new angular project (boilerplate) with project name frontend:
 > ng new frontend 
+* To create a component
+> ng g c
+* To create a service 
+> ng g s
+* For linking the spring server with angular server 
+	* added a proxy file in root of the folder, which connect to the spring server for making the api calls from the 	   front end.
+	* In package.json add this:
+		> "start": "ng serve --proxy-config proxy.config.json"
+* To use bootstrap and jquery add that in angular.json, remember don't add **../**
