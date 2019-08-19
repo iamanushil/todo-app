@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "http://localhost:8080",
+    "target": "https://todo-deploy-2.herokuapp.com",
     "secure": false
   }
 }
