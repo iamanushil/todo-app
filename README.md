@@ -1,12 +1,8 @@
 # Steps to run the app:
 	1. Go inside todo-app/todo and type:
-		
-		> mvn spring-boot:run
-	
+	> mvn spring-boot:run
 	2. Go to url:
-		
-		> http://localhost:8080/
-	
+	> http://localhost:8080/
 	3. Start using the application.
 	
 	Note: Respone might me slow because of AWS RDS Free Database.
