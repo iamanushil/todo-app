@@ -11,7 +11,7 @@ Note: Respone might me slow because of AWS RDS Free Database.
 * Download the jar on below link:
 > https://todo-app-coll.s3.us-east-2.amazonaws.com/todo-0.0.1-SNAPSHOT.jar
 * Run the jar:
-> jar -jar (jarName)
+> java -jar (jarName)
 * Go to url:
 > http://localhost:8080/
 
