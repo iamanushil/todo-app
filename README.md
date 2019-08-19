@@ -1,3 +1,6 @@
+# APP URL:
+> http://ec2-13-59-44-57.us-east-2.compute.amazonaws.com:8080/
+
 # Steps to run the app:
 * Go inside todo-app/todo and type:
 > mvn spring-boot:run
