@@ -1,3 +1,23 @@
+# APP URL:
+> http://ec2-13-59-44-57.us-east-2.compute.amazonaws.com:8080/
+
+# Steps to run the app:
+* Go inside todo-app/todo and type:
+> mvn spring-boot:run
+* Go to url:
+> http://localhost:8080/
+* Start using the application.
+
+Note: Respone might me slow because of AWS RDS Free Database.
+
+# OR
+* Download the jar on below link:
+> https://todo-app-coll.s3.us-east-2.amazonaws.com/todo-0.0.1-SNAPSHOT.jar
+* Run the jar:
+> java -jar (jarName)
+* Go to url:
+> http://localhost:8080/
+
 # Steps to run the application:
 1. MySql Setup:
 	* Login in my sql using username and password.
