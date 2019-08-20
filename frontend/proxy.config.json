@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "https://todo-deploy-2.herokuapp.com",
+    "target": "https://ec2-13-59-44-57.us-east-2.compute.amazonaws.com:8080",
     "secure": false
   }
 }

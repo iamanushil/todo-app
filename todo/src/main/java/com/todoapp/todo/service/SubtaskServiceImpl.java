@@ -1,5 +1,7 @@
 package com.todoapp.todo.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,12 @@ public class SubtaskServiceImpl implements SubtaskService{
 		System.out.println("saveSubTaskToATodo");
 		
 		return this.subtaskRepository.save(subtask);
+	}
+
+	@Override
+	public List<Subtask> findAllSubtask() {
+		System.out.println("findAllSubtask");
+		return this.subtaskRepository.findAll();
 	}
 	
 }

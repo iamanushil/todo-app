@@ -13,4 +13,8 @@ export class SubtaskService {
   saveSubtaskToATodo(subtask: Subtask): Observable<Subtask> {
     return this.https.post<Subtask>(this.baseUrl, subtask);
   }
+
+  findAllSubtask(): Observable<Subtask[]> {
+    return this.https.get<Subtask[]>(this.baseUrl);
+  }
 }

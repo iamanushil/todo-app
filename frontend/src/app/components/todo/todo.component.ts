@@ -3,12 +3,14 @@ import { FormBuilder, FormGroup } from "@angular/forms";
 import { Todo } from "../../models/todo";
 import { TodoService } from "../../services/todoService/todo.service";
 import { Subtask } from "src/app/models/subtask";
+import { TodoWithSub } from "../../models/todoWithSub";
+import { SubtaskService } from "../../services/subtaskService/subtask.service";
 
 @Component({
   selector: "app-todo",
   templateUrl: "./todo.component.html",
   styleUrls: ["./todo.component.css"],
-  providers: [TodoService]
+  providers: [TodoService, SubtaskService]
 })
 export class TodoComponent implements OnInit {
   todoForm: FormGroup;
@@ -20,6 +22,8 @@ export class TodoComponent implements OnInit {
 
   subtasks: Subtask[] = [];
 
+  newArr: TodoWithSub[] = [];
+
   private createForm() {
     this.todoForm = this.formBuilder.group({
       item: ""
@@ -28,7 +32,8 @@ export class TodoComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private todoService: TodoService
+    private todoService: TodoService,
+    private subtaskService: SubtaskService
   ) {
     this.createForm();
   }
@@ -36,6 +41,9 @@ export class TodoComponent implements OnInit {
   // To load all todos when TodoComponent is loaded
   ngOnInit() {
     this.todoService.getTodos().subscribe(res => (this.todos = res));
+    this.subtaskService
+      .findAllSubtask()
+      .subscribe(res => (this.subtasks = res));
   }
 
   // For Adding and Updating a Todo
@@ -104,5 +112,28 @@ export class TodoComponent implements OnInit {
       this.todos.push(res);
     });
     this.undoButton = false;
+  }
+
+  // for show subtask
+  createnewArrForDisplay(todos, subtasks) {
+    this.newArr = [];
+    // console.log(todos);
+    for (let x of subtasks) {
+      console.log(x);
+      if (todos.id == x.todoId) {
+        const data: TodoWithSub = {
+          id: todos.id,
+          description: todos.description,
+          todoSubtasks: {
+            id: x.id,
+            description: x.description,
+            todoId: todos.id
+          }
+        };
+        // console.log(data);
+        this.newArr.push(data);
+      }
+    }
+    //console.log(this.newArr);
   }
 }

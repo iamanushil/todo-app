@@ -52,7 +52,7 @@ module.exports = "<div class=\"container-fluid\">\n  <div>\n    <form\n      [fo
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\n  <div class=\"center\">\n    <form [formGroup]=\"todoForm\" (ngSubmit)=\"onSubmit(todoForm.value)\">\n      <div\n        class=\"form-row align-items-center\"\n        style=\"margin-top: 30px; margin-left: 310px\"\n      >\n        <div class=\"col-sm-6 my-1\">\n          <input\n            type=\"text\"\n            class=\"form-control\"\n            formControlName=\"item\"\n            #desc\n          />\n        </div>\n        <div class=\"col-auto my-1\">\n          <button\n            type=\"button\"\n            class=\"btn btn-primary\"\n            (click)=\"onSubmit(todoForm.value)\"\n          >\n            Todo\n          </button>\n        </div>\n      </div>\n    </form>\n    <div class=\"col-auto my-1\">\n      <button\n        type=\"button\"\n        class=\"btn btn-primary\"\n        (click)=\"recoverLastDeletedTodo()\"\n        *ngIf=\"undoButton\"\n      >\n        Undo\n      </button>\n    </div>\n    <br />\n    <table class=\"table\">\n      <thead></thead>\n      <tbody>\n        <tr *ngFor=\"let todo of todos\">\n          <td>{{ todo.description }}</td>\n          <td>\n            <button class=\"btn btn-secondary\" (click)=\"selectATodo(todo)\">\n              Edit\n            </button>\n          </td>\n          <td>\n            <button class=\"btn btn-danger\" (click)=\"deleteTodo(todo)\">\n              Delete\n            </button>\n          </td>\n          <td>\n            <button class=\"btn btn-secondary\" (click)=\"showSubtask(todo)\">\n              Subtask\n            </button>\n          </td>\n          <td>\n            <app-subtask [subtasks]=\"subtasks\" [todo]=\"todo\"></app-subtask>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n  <br /><br />\n  <div class=\"center\">\n    <table class=\"table\">\n      <thead align=\"center\">\n        <h3 style=\"color: peru\">Subtask List</h3>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let subtask of subtasks\">\n          <td>{{ subtask.description }}</td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n"
+module.exports = "<div class=\"container-fluid\">\n  <div class=\"center\">\n    <form [formGroup]=\"todoForm\" (ngSubmit)=\"onSubmit(todoForm.value)\">\n      <div\n        class=\"form-row align-items-center\"\n        style=\"margin-top: 30px; margin-left: 310px\"\n      >\n        <div class=\"col-sm-6 my-1\">\n          <input\n            type=\"text\"\n            class=\"form-control\"\n            formControlName=\"item\"\n            #desc\n          />\n        </div>\n        <div class=\"col-auto my-1\">\n          <button\n            type=\"button\"\n            class=\"btn btn-primary\"\n            (click)=\"onSubmit(todoForm.value)\"\n          >\n            Todo\n          </button>\n        </div>\n      </div>\n    </form>\n    <div class=\"col-auto my-1\">\n      <button\n        type=\"button\"\n        class=\"btn btn-primary\"\n        (click)=\"recoverLastDeletedTodo()\"\n        *ngIf=\"undoButton\"\n      >\n        Undo\n      </button>\n    </div>\n    <br />\n    <table class=\"table\">\n      <thead></thead>\n      <tbody>\n        <tr *ngFor=\"let todo of todos\">\n          <td width=\"20%\">\n            {{ todo.description }}\n            <br /><br />\n            <div *ngFor=\"let x of newArr\">\n              <ul\n                *ngIf=\"x.todoSubtasks.todoId == todo.id\"\n                [style.color]=\"'orange'\"\n              >\n                <li>\n                  {{ x.todoSubtasks.description }}\n                </li>\n              </ul>\n            </div>\n          </td>\n          <td>\n            <button\n              class=\"btn btn-secondary\"\n              (click)=\"createnewArrForDisplay(todo, subtasks)\"\n            >\n              Show Subtask\n            </button>\n          </td>\n          <td>\n            <button class=\"btn btn-secondary\" (click)=\"selectATodo(todo)\">\n              Edit\n            </button>\n          </td>\n          <td>\n            <button class=\"btn btn-danger\" (click)=\"deleteTodo(todo)\">\n              Delete\n            </button>\n          </td>\n          <td>\n            <app-subtask [subtasks]=\"subtasks\" [todo]=\"todo\"></app-subtask>\n          </td>\n          <br />\n        </tr>\n      </tbody>\n    </table>\n  </div>\n\n  <!-- <br /><br />\n  <div class=\"center\">\n    <table class=\"table\">\n      <thead align=\"center\">\n        <h3 style=\"color: peru\">Subtask List</h3>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let subtask of subtasks\">\n          <td>{{ subtask.description }}</td>\n        </tr>\n      </tbody>\n    </table>\n  </div> -->\n</div>\n"
 
 /***/ }),
 
@@ -285,17 +285,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
 /* harmony import */ var _services_todoService_todo_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/todoService/todo.service */ "./src/app/services/todoService/todo.service.ts");
+/* harmony import */ var _services_subtaskService_subtask_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/subtaskService/subtask.service */ "./src/app/services/subtaskService/subtask.service.ts");
+
 
 
 
 
 let TodoComponent = class TodoComponent {
-    constructor(formBuilder, todoService) {
+    constructor(formBuilder, todoService, subtaskService) {
         this.formBuilder = formBuilder;
         this.todoService = todoService;
+        this.subtaskService = subtaskService;
         this.todos = [];
         this.undoButton = false;
         this.subtasks = [];
+        this.newArr = [];
         this.createForm();
     }
     createForm() {
@@ -306,6 +310,9 @@ let TodoComponent = class TodoComponent {
     // To load all todos when TodoComponent is loaded
     ngOnInit() {
         this.todoService.getTodos().subscribe(res => (this.todos = res));
+        this.subtaskService
+            .findAllSubtask()
+            .subscribe(res => (this.subtasks = res));
     }
     // For Adding and Updating a Todo
     onSubmit(val) {
@@ -366,10 +373,33 @@ let TodoComponent = class TodoComponent {
         });
         this.undoButton = false;
     }
+    // for show subtask
+    createnewArrForDisplay(todos, subtasks) {
+        this.newArr = [];
+        // console.log(todos);
+        for (let x of subtasks) {
+            console.log(x);
+            if (todos.id == x.todoId) {
+                const data = {
+                    id: todos.id,
+                    description: todos.description,
+                    todoSubtasks: {
+                        id: x.id,
+                        description: x.description,
+                        todoId: todos.id
+                    }
+                };
+                // console.log(data);
+                this.newArr.push(data);
+            }
+        }
+        //console.log(this.newArr);
+    }
 };
 TodoComponent.ctorParameters = () => [
     { type: _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"] },
-    { type: _services_todoService_todo_service__WEBPACK_IMPORTED_MODULE_3__["TodoService"] }
+    { type: _services_todoService_todo_service__WEBPACK_IMPORTED_MODULE_3__["TodoService"] },
+    { type: _services_subtaskService_subtask_service__WEBPACK_IMPORTED_MODULE_4__["SubtaskService"] }
 ];
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])("desc", { static: true })
@@ -378,7 +408,7 @@ TodoComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: "app-todo",
         template: __webpack_require__(/*! raw-loader!./todo.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/todo/todo.component.html"),
-        providers: [_services_todoService_todo_service__WEBPACK_IMPORTED_MODULE_3__["TodoService"]],
+        providers: [_services_todoService_todo_service__WEBPACK_IMPORTED_MODULE_3__["TodoService"], _services_subtaskService_subtask_service__WEBPACK_IMPORTED_MODULE_4__["SubtaskService"]],
         styles: [__webpack_require__(/*! ./todo.component.css */ "./src/app/components/todo/todo.component.css")]
     })
 ], TodoComponent);
@@ -410,6 +440,9 @@ let SubtaskService = class SubtaskService {
     }
     saveSubtaskToATodo(subtask) {
         return this.https.post(this.baseUrl, subtask);
+    }
+    findAllSubtask() {
+        return this.https.get(this.baseUrl);
     }
 };
 SubtaskService.ctorParameters = () => [

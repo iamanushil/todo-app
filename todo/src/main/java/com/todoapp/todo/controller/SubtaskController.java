@@ -1,5 +1,7 @@
 package com.todoapp.todo.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,5 +24,12 @@ public class SubtaskController {
 		System.out.println("createSubtask");
 	
 		return subtaskService.saveSubTaskToATodo(subtask);
+	}
+	
+	@RequestMapping(value = "", method = RequestMethod.GET)
+	public @ResponseBody List<Subtask> getAllSubtask() {	
+		System.out.println("getAllSubtask");
+	
+		return subtaskService.findAllSubtask();
 	}
 }

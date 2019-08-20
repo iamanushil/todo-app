@@ -39,7 +39,28 @@
       <thead></thead>
       <tbody>
         <tr *ngFor="let todo of todos">
-          <td>{{ todo.description }}</td>
+          <td width="20%">
+            {{ todo.description }}
+            <br /><br />
+            <div *ngFor="let x of newArr">
+              <ul
+                *ngIf="x.todoSubtasks.todoId == todo.id"
+                [style.color]="'orange'"
+              >
+                <li>
+                  {{ x.todoSubtasks.description }}
+                </li>
+              </ul>
+            </div>
+          </td>
+          <td>
+            <button
+              class="btn btn-secondary"
+              (click)="createnewArrForDisplay(todo, subtasks)"
+            >
+              Show Subtask
+            </button>
+          </td>
           <td>
             <button class="btn btn-secondary" (click)="selectATodo(todo)">
               Edit
@@ -51,18 +72,15 @@
             </button>
           </td>
           <td>
-            <button class="btn btn-secondary" (click)="showSubtask(todo)">
-              Subtask
-            </button>
-          </td>
-          <td>
             <app-subtask [subtasks]="subtasks" [todo]="todo"></app-subtask>
           </td>
+          <br />
         </tr>
       </tbody>
     </table>
   </div>
-  <br /><br />
+
+  <!-- <br /><br />
   <div class="center">
     <table class="table">
       <thead align="center">
@@ -74,5 +92,5 @@
         </tr>
       </tbody>
     </table>
-  </div>
+  </div> -->
 </div>
